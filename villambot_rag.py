@@ -49,54 +49,57 @@ def retrieve_relevant_chunks(question: str) -> str:
 
 
 # Main function to generate response
-def generate_response(user_question: str, chat_history: list = []) -> str:
-    """
-    user_question: User's latest message
-    chat_history: List of previous messages like:
-        [{"role": "user", "content": "Hi"}, {"role": "assistant", "content": "Hello"}]
-    """
+def generate_response(question):
+    """Generate a response using Pinecone retrieval and Gemini 2.0 Flash."""
+    import asyncio
 
-    context = retrieve_relevant_chunks(user_question)
-    system_prompt = system_prompt_template.format(doc_content=context)
+    # Embed the user’s question
+    query_embed = embed_model.embed_query(question)
+    query_embed = [float(val) for val in query_embed]
 
-    # Build LangChain memory
-    chat_mem = ChatMessageHistory()
-    for msg in chat_history:
-        if msg["role"] == "user":
-            chat_mem.add_user_message(msg["content"])
-        elif msg["role"] == "assistant":
-            chat_mem.add_ai_message(msg["content"])
-
-    memory = ConversationBufferMemory(
-        memory_key="chat_history",
-        chat_memory=chat_mem,
-        return_messages=True
+    # Query Pinecone
+    results = pinecone_index.query(
+        vector=query_embed,
+        top_k=3,
+        include_values=False,
+        include_metadata=True
     )
 
-    # Full conversation prompt
+    # Extract matched content
+    doc_contents = []
+    print("\n" + "="*50)
+    print(f"RETRIEVED DOCUMENTS FOR: '{question}'")
+    for i, match in enumerate(results.get('matches', [])):
+        text = match['metadata'].get('text', '')
+        doc_contents.append(text)
+        print(f"\nDOCUMENT {i+1}:\n{text}\n")
+    print("="*50 + "\n")
+
+    # Prepare retrieved content
+    doc_content = "\n".join(doc_contents).replace('{', '{{').replace('}', '}}') \
+        if doc_contents else "No relevant information found."
+
+    # Format system prompt
+    formatted_prompt = system_prompt_template.format(doc_content=doc_content)
+
+    # Prepare Gemini model
+    chat = ChatGoogleGenerativeAI(
+        model="gemini-2.0-flash",
+        temperature=0.1,
+        google_api_key=os.getenv("GOOGLE_API_KEY")
+    )
+
+    # Create the final prompt for Gemini
     prompt = ChatPromptTemplate(
         messages=[
-            SystemMessagePromptTemplate.from_template(system_prompt),
-            MessagesPlaceholder(variable_name="chat_history"),
+            SystemMessagePromptTemplate.from_template(formatted_prompt),
             HumanMessagePromptTemplate.from_template("{question}")
         ]
     )
 
-    # Gemini 2.0 Flash LLM
-    chat_model = ChatGoogleGenerativeAI(
-        model="gemini-2.0-flash",
-        temperature=0.1,
-        google_api_key=GOOGLE_API_KEY
-    )
-    
-    # Build and run chain
-    conversation = LLMChain(
-        llm=chat_model,
-        prompt=prompt,
-        memory=memory,
-        verbose=False
-    )
+    # No memory
+    chain = LLMChain(llm=chat, prompt=prompt, verbose=True)
 
-    result = conversation({"question": user_question})
-    return result.get("text", "Sorry, I couldn't find an answer.")
-    
+    # Run and return result
+    result = chain.invoke({"question": question})
+    return result.get("text", "Sorry, I couldn't find a good answer.")
