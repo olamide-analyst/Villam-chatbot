@@ -1,7 +1,32 @@
 # 🌿 VillamBot – AI Chatbot for Villam Hub
 
-VillamBot is an AI-powered assistant built for **Villam Hub**, a platform focused on sustainable agriculture and tree planting.  
+VillamBot is the AI-powered assistant built for **Villam Hub**, a platform focused on sustainable agriculture and tree planting.  
+
 This project uses **LangChain**, **Pinecone**, and **Gemini 2.0 Flash** to deliver relevant answers based only on Villam Hub’s verified data.
+
+The chatbot:
+
+* Takes a user's question.
+* Searches the vector database (Pinecone) for relevant information from the `villamhub_rag_dataset.csv` document.
+* Uses AI model (Google's Gemini 2.0 Flash) to understand the question and the retrieved information.
+* Generates a concise and helpful answer.
+
+GitHub repository: https://github.com/olamide-analyst/Villam-chatbot
+
+ ## Features 
+* AI-Powered Responses: uses Google's Gemini 2.0 Flash model for intelligent answers.
+* Context-Aware: Retrieves relevant information from  `villamhub_rag_dataset.csv` using Pinecone vector search.
+* Conversational Memory: Remembers previous parts of the conversation to provide more relevant follow-up answers.
+
+## Tech Stack
+
+* Python: The primary programming language.
+* Langchain: A framework to simplify building applications with Large Language Models (LLMs).
+* Google Generative AI (Gemini 2.0 Flash): The LLM used for understanding and generating text.
+* GoogleGenerativeAIEmbeddings: For converting text into numerical representations (embeddings) that AI can understand.
+* Pinecone: A vector database used to store and efficiently search through the embeddings of our knowledge base.
+* CSVLoader: To load and read text from CSV files.
+* Dotenv: To manage sensitive information like API keys.
 
 ## Purpose
 
@@ -9,12 +34,13 @@ This repo contains the **backend logic** and **testing environment** for VillamB
 - Internal team members 
 - AI/ML enthusiasts exploring the RAG pipelines
 
+
 ## Project Structure
 
 | File/Folder                 | Description |
 |----------------------------|-------------|
-| `.gitignore`               | Hides sensitive files like `.env` containing API keys |
-| `requirements.txt`         | Lists all Python dependencies needed to run the chatbot |
+| `.gitignore`               | Hides the `.env` containing API keys |
+| `requirements.txt`         | Lists all Python libraries needed to run the chatbot |
 | `villamhub_rag_dataset.csv`| Cleaned demo dataset containing Villam Hub knowledge |
 | `rag_pipeline.ipynb`       | Main chatbot logic for exploration and debugging:<br> embeds queries, retrieves data, and generates responses |
 | `villambot.py`             | Main chatbot logic for integration |
@@ -25,29 +51,34 @@ This repo contains the **backend logic** and **testing environment** for VillamB
 
 ### 1. Clone the Repo
 ```bash
-git clone https://github.com/your-username/villambot.git
+git clone https://github.com/olamide-analyst/Villam-chatbot
 cd villambot
 
 ```
- ### 2. Add Your Environment Variables
+ ### 2. Add Your Environment Variables (.env file)
 
 Create a `.env` file in the root directory with the following:
 
 ```
-GOOGLE_API_KEY=your_google_generative_ai_key
-PINECONE_API_KEY=your_pinecone_key
+GOOGLE_API_KEY=google_generative_ai_key
+PINECONE_API_KEY=pinecone_key
 ```
 
  `.env` is already excluded from version control via `.gitignore`.
 
 ### 3. Install Required Libraries
-
-Make sure you're in your Python environment, then install dependencies:
+Install all the Python packages listed in  `requirements.txt`
 
 ```bash
 pip install -r requirements.txt
 ```
 ## How to use 
+The project has two main Python scripts:
+
+*  `villambot_pinecone.ipynb`: This script processes the dataset `villamhub_rag_dataset.csv`, converts its content into embeddings/vectors (numerical representations), and stores them in the Pinecone vector database. You only need to run this once (or whenever the dataset document changes).
+  
+*  `rag_pipeline.ipynb`: This script runs the chatbot engine logic (retrieval + Gemini 2.0 generation).
+  
 ### Step 1: Upsert the Dataset
 
 Run `villambot_pinecone.ipynb` to upload the contents of `villamhub_rag_dataset.csv` to Pinecone.
@@ -81,3 +112,6 @@ This is ready to be integrated with a **Flask**, **FastAPI**, or **Streamlit** f
 This project is maintained by the Villam Hub team.
 For suggestions or pull requests, feel free to fork the repo or reach out directly.
 
+## References
+* http://github.com/ajisco/DSA_HIV
+* https://youtu.be/DFjuV2YBoe4?si=2ND-frk2_Wjfv9FF
