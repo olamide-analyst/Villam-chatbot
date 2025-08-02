@@ -46,7 +46,7 @@ This repo contains the **backend logic** and **testing environment** for VillamB
 | `villambot_pipeline.ipynb`       | Main chatbot logic for exploration and debugging:<br> embeds queries, retrieves data, and generates responses |
 | `villambot.py`             | Main chatbot logic for integration |
 | `villambot_pinecone.ipynb` | Notebook to load and upsert the dataset into Pinecone |
-| `test_chatbot.ipynb`       | Notebook to test chatbot responses interactively |
+| `test_chatbot.py`| Notebook to test chatbot responses interactively |
 
 ##  Setup Instructions
 
@@ -88,7 +88,11 @@ Run `villambot_pinecone.ipynb` to upload the contents of `villamhub_rag_dataset.
 
 Use either:
 
-* `test_chatbot.ipynb` for interactive testing
+* `test_chatbot.py` for interactive testing
+```bash
+streamlit run test_chatbot.py
+```
+  
 * Or `villambot_pipeline.ipynb` to debug the full flow end-to-end
 
 
@@ -108,7 +112,7 @@ This is ready to be integrated with a **Flask**, **FastAPI**, or **Streamlit** f
   * 200 requests/day
 
 
-## 🤝 Contributing
+##  Contributing
 
 This project is maintained by the Villam Hub team.
 For suggestions or pull requests, feel free to fork the repo or reach out directly.
