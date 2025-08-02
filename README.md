@@ -40,6 +40,7 @@ This repo contains the **backend logic** and **testing environment** for VillamB
 | File/Folder                 | Description |
 |----------------------------|-------------|
 | `.gitignore`               | Hides the `.env` containing API keys |
+| `.env.example`              | API keys template                     |
 | `requirements.txt`         | Lists all Python libraries needed to run the chatbot |
 | `villamhub_rag_dataset.csv`| Cleaned demo dataset containing Villam Hub knowledge |
 | `villambot_pipeline.ipynb`       | Main chatbot logic for exploration and debugging:<br> embeds queries, retrieves data, and generates responses |
@@ -57,7 +58,7 @@ cd villambot
 ```
  ### 2. Add Your Environment Variables (.env file)
 
-Create a `.env` file in the root directory with the following:
+Add API keys to `.env.example` file and rename to `.env` :
 
 ```
 GOOGLE_API_KEY=google_generative_ai_key
