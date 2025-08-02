@@ -1,5 +1,5 @@
 import streamlit as st
-from villambot import generate_response  # Make sure villambot.py is in the same folder
+from villambot import generate_response  
 
 # --- Initialize session state ---
 if "chat_history" not in st.session_state:
