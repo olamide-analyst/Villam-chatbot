@@ -11,16 +11,15 @@ This repo contains the **backend logic** and **testing environment** for VillamB
 
 ## Project Structure
 
-| File/Folder                | Description |
-|---------------------------|-------------|
-| `.gitignore`              | Hides sensitive files like `.env` containing API keys |
-| `requirements.txt`        | Lists all Python dependencies needed to run the chatbot |
-| `villamhub_rag_dataset.csv` | Cleaned demo dataset containing Villam Hub knowledge |
-| `rag_pipeline.ipynb`      |Main chatbot logic for exploration and debugging
-                            |: embeds queries, retrieves data, and generates responses|
-| `villambot.py`            | Main chatbot logic for integration           |
-| `villambot_pinecone.ipynb`| Notebook to load and upsert the dataset into Pinecone |
-| `test_chatbot.ipynb`      | Notebook to test chatbot responses interactively |
+| File/Folder                 | Description |
+|----------------------------|-------------|
+| `.gitignore`               | Hides sensitive files like `.env` containing API keys |
+| `requirements.txt`         | Lists all Python dependencies needed to run the chatbot |
+| `villamhub_rag_dataset.csv`| Cleaned demo dataset containing Villam Hub knowledge |
+| `rag_pipeline.ipynb`       | Main chatbot logic for exploration and debugging:<br> embeds queries, retrieves data, and generates responses |
+| `villambot.py`             | Main chatbot logic for integration |
+| `villambot_pinecone.ipynb` | Notebook to load and upsert the dataset into Pinecone |
+| `test_chatbot.ipynb`       | Notebook to test chatbot responses interactively |
 
 ##  Setup Instructions
 
@@ -28,8 +27,9 @@ This repo contains the **backend logic** and **testing environment** for VillamB
 ```bash
 git clone https://github.com/your-username/villambot.git
 cd villambot
-            
-### 2. Add Your Environment Variables
+
+```
+ ### 2. Add Your Environment Variables
 
 Create a `.env` file in the root directory with the following:
 
@@ -47,10 +47,7 @@ Make sure you're in your Python environment, then install dependencies:
 ```bash
 pip install -r requirements.txt
 ```
-
-
-## How to Use
-
+## How to use 
 ### Step 1: Upsert the Dataset
 
 Run `villambot_pinecone.ipynb` to upload the contents of `villamhub_rag_dataset.csv` to Pinecone.
@@ -83,3 +80,4 @@ This is ready to be integrated with a **Flask**, **FastAPI**, or **Streamlit** f
 
 This project is maintained by the Villam Hub team.
 For suggestions or pull requests, feel free to fork the repo or reach out directly.
+
