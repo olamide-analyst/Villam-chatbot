@@ -42,7 +42,7 @@ This repo contains the **backend logic** and **testing environment** for VillamB
 | `.gitignore`               | Hides the `.env` containing API keys |
 | `requirements.txt`         | Lists all Python libraries needed to run the chatbot |
 | `villamhub_rag_dataset.csv`| Cleaned demo dataset containing Villam Hub knowledge |
-| `rag_pipeline.ipynb`       | Main chatbot logic for exploration and debugging:<br> embeds queries, retrieves data, and generates responses |
+| `villambot_pipeline.ipynb`       | Main chatbot logic for exploration and debugging:<br> embeds queries, retrieves data, and generates responses |
 | `villambot.py`             | Main chatbot logic for integration |
 | `villambot_pinecone.ipynb` | Notebook to load and upsert the dataset into Pinecone |
 | `test_chatbot.ipynb`       | Notebook to test chatbot responses interactively |
@@ -75,11 +75,11 @@ pip install -r requirements.txt
 ## How to use 
 The project has two main Python scripts:
 
-*  `villambot_pinecone.ipynb`: This script processes the dataset `villamhub_rag_dataset.csv`, converts its content into embeddings/vectors (numerical representations), and stores them in the Pinecone vector database. You only need to run this once (or whenever the dataset document changes).
+*  `villambot_pinecone.ipynb`: This script processes the dataset `villamhub_rag_dataset.csv`, converts its content into embeddings/vectors (numerical representations), and stores(upsert) them in the Pinecone vector database. You only need to run this once (or whenever the dataset document changes).
   
-*  `rag_pipeline.ipynb`: This script runs the chatbot engine logic (retrieval + Gemini 2.0 generation).
+*  `villambot_pipeline.ipynb` or `villambot.py`: These runs the chatbot engine logic (retrieval + Gemini 2.0 generation).
   
-### Step 1: Upsert the Dataset
+### Step 1: Upsert the Dataset to pinecone
 
 Run `villambot_pinecone.ipynb` to upload the contents of `villamhub_rag_dataset.csv` to Pinecone.
 
@@ -88,7 +88,7 @@ Run `villambot_pinecone.ipynb` to upload the contents of `villamhub_rag_dataset.
 Use either:
 
 * `test_chatbot.ipynb` for interactive testing
-* Or `rag_pipeline.ipynb` to debug the full flow end-to-end
+* Or `villambot_pipeline.ipynb` to debug the full flow end-to-end
 
 
 ##  Backend Integration
@@ -113,5 +113,6 @@ This project is maintained by the Villam Hub team.
 For suggestions or pull requests, feel free to fork the repo or reach out directly.
 
 ## References
-* http://github.com/ajisco/DSA_HIV
-* https://youtu.be/DFjuV2YBoe4?si=2ND-frk2_Wjfv9FF
+
+* HIV Chatbot Project Example: http://github.com/ajisco/DSA_HIV
+* YouTube Gemini + LangChain Tutorial: https://youtu.be/DFjuV2YBoe4?si=2ND-frk2_Wjfv9FF
