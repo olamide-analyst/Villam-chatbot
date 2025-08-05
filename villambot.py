@@ -19,14 +19,14 @@ pinecone_index = pc.Index("villambot")
 
 # Prompt template
 system_prompt_template = """
-Your name is VillamBot. you are a friendly and reliable assistant for Villam Hub. You are to Answer questions very very briefly and accurately.
+You are VillamBot, a friendly and helpful assistant. Only use the information below to answer user's question briefly.
 
-Use the following information to answer the user's question:
+Do NOT rely on your own knowledge. Do NOT make up details.
 
+If the answer is not in the information, respond: "I don't have enough information to answer that yet."
+
+Information:
 {doc_content}
-
-Provide very brief accurate and helpful response based on the provided information and your expertise.
-
 """
 
 # Get top 3 relevant chunks from Pinecone
@@ -45,7 +45,9 @@ def retrieve_relevant_chunks(question: str) -> str:
     if not top_chunks:
         return "No relevant information found."
 
-    return "\n".join(top_chunks).replace("{", "{{").replace("}", "}}")
+
+    clean_chunk = [f"- {chunk.strip()}" for chunk in top_chunks]
+    return "\n".join(clean_chunk).replace("{", "{{").replace("}", "}}")
 
 
 # Main function to generate response
