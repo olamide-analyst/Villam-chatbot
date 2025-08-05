@@ -7,7 +7,7 @@ This project uses **LangChain**, **Pinecone**, and **Gemini 2.0 Flash** to deliv
 The chatbot:
 
 * Takes a user's question.
-* Searches the vector database (Pinecone) for relevant information from the `villamhub_rag_dataset.csv` document.
+* Searches the vector database (Pinecone) for relevant information from the `villam_hub_knowledge_base.md` document.
 * Uses AI model (Google's Gemini 2.0 Flash) to understand the question and the retrieved information.
 * Generates a concise and helpful answer.
 
@@ -15,7 +15,7 @@ GitHub repository: https://github.com/olamide-analyst/Villam-chatbot
 
  ## Features 
 * AI-Powered Responses: uses Google's Gemini 2.0 Flash model for intelligent answers.
-* Context-Aware: Retrieves relevant information from  `villamhub_rag_dataset.csv` using Pinecone vector search.
+* Context-Aware: Retrieves relevant information from  `villam_hub_knowledge_base.md` using Pinecone vector search.
 * Conversational Memory: Remembers previous parts of the conversation to provide more relevant follow-up answers.
 
 ## Tech Stack
@@ -32,8 +32,6 @@ GitHub repository: https://github.com/olamide-analyst/Villam-chatbot
 
 This repo contains the **backend logic** and **testing environment** for VillamBot. It is meant for:
 - Internal team members 
-- AI/ML enthusiasts exploring the RAG pipelines
-
 
 ## Project Structure
 
@@ -42,7 +40,7 @@ This repo contains the **backend logic** and **testing environment** for VillamB
 | `.gitignore`               | Hides the `.env` containing API keys |
 | `.env.example`              | API keys template                     |
 | `requirements.txt`         | Lists all Python libraries needed to run the chatbot |
-| `villamhub_rag_dataset.csv`| Cleaned demo dataset containing Villam Hub knowledge |
+| `villam_hub_knowledge_base.md`| Cleaned demo dataset containing Villam Hub knowledge |
 | `villambot_pipeline.ipynb`       | Main chatbot logic for exploration and debugging:<br> embeds queries, retrieves data, and generates responses |
 | `villambot.py`             | Main chatbot logic for integration |
 | `villambot_pinecone.ipynb` | Notebook to load and upsert the dataset into Pinecone |
@@ -76,13 +74,13 @@ pip install -r requirements.txt
 ## How to use 
 The project has two main Python scripts:
 
-*  `villambot_pinecone.ipynb`: This script processes the dataset `villamhub_rag_dataset.csv`, converts its content into embeddings/vectors (numerical representations), and stores(upsert) them in the Pinecone vector database. You only need to run this once (or whenever the dataset document changes).
+*  `villambot_pinecone.ipynb`: This script processes the dataset `villam_hub_knowledge_base.md`, converts its content into embeddings/vectors (numerical representations), and stores(upsert) them in the Pinecone vector database. You only need to run this once (or whenever the dataset document changes).
   
 *  `villambot_pipeline.ipynb` or `villambot.py`: These runs the chatbot engine logic (retrieval + Gemini 2.0 generation).
   
 ### Step 1: Upsert the Dataset to pinecone
 
-Run `villambot_pinecone.ipynb` to upload the contents of `villamhub_rag_dataset.csv` to Pinecone.
+Run `villambot_pinecone.ipynb` to upload the contents of `villam_hub_knowledge_base.md` to Pinecone.
 
 ### Step 2: Test the Chatbot
 
@@ -115,7 +113,6 @@ This is ready to be integrated with a **Flask**, **FastAPI**, or **Streamlit** f
 ##  Contributing
 
 This project is maintained by the Villam Hub team.
-For suggestions or pull requests, feel free to fork the repo or reach out directly.
 
 ## References
 
