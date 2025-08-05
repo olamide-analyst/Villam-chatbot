@@ -19,14 +19,12 @@ pinecone_index = pc.Index("villambot")
 
 # Prompt template
 system_prompt_template = """
-You are VillamBot, a friendly and helpful assistant. Only use the information below to answer user's question briefly.
+you are villambot, an AI assistant for a start up product called villam hub.
+Answer questions very very briefly and accurately. Use the following information to answer the user's question:
 
-Do NOT rely on your own knowledge. Do NOT make up details.
-
-If the answer is not in the information, respond: "I don't have enough information to answer that yet."
-
-Information:
 {doc_content}
+
+Provide very brief accurate and helpful health response based on the provided information and your expertise.
 """
 
 # Get top 3 relevant chunks from Pinecone
