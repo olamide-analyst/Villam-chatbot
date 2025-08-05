@@ -2,8 +2,8 @@
 # Villam Hub – Knowledge Base
 
 ## Overview
-**Name:** Villam Hub  
-**Founder:** Wisdom Chibuzor is the founder of villam hub  
+**Name:** Villam Hub. 
+**Founder:** Wisdom Chibuzor is the founder of villam hub.  
 **Description:** An all-in-one digital platform and physical hub designed to empower Nigerians and Africans with sustainable, low-power farming solutions, community support, and climate resilience tools.
 
 ## The Problem
@@ -55,6 +55,5 @@ Villam Hub offers a platform with low-power, climate-resilient farming solutions
     - Tree Planting: 10%
 - **Physical Hub Revenue:** Adds ₦130,000/month
 
----
 
 This markdown file was generated to test Gemini 2.0 for hallucination detection.
