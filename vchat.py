@@ -15,11 +15,11 @@ PINECONE_API_KEY = os.getenv("PINECONE_API_KEY")
 # Initialize services
 embed_model = GoogleGenerativeAIEmbeddings(model="models/embedding-001")
 pc = Pinecone(api_key=PINECONE_API_KEY)
-pinecone_index = pc.Index("villambot")  
+pinecone_index = pc.Index("vchat")  
 
 # Prompt template
 system_prompt_template = """
-you are villambot, an AI assistant for a start up product called villam hub.
+you are vchat, an AI assistant for a start up product called villam hub.
 Answer questions very very briefly and accurately. Use the following information to answer the user's question:
 
 {doc_content}
