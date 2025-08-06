@@ -1,14 +1,14 @@
 import streamlit as st
-from villambot import generate_response  
+from vchat import generate_response  
 
 # --- Initialize session state ---
 if "chat_history" not in st.session_state:
     st.session_state.chat_history = [
-        {"role": "assistant", "content": "Hi there! I'm VillamBot. How can I help you today?"}
+        {"role": "assistant", "content": "Hi there! I'm Vchat. How can I help you today?"}
     ]
 
 # Title and instructions
-st.title("🌿 VillamBot – Villam Hub Assistant")
+st.title("🌿 VChat – Villam Hub Assistant")
 st.write("Ask about urban farming, tree planting, or anything Villam Hub-related!")
 
 # Display chat history
@@ -24,7 +24,7 @@ if user_input:
         st.markdown(user_input)
     st.session_state.chat_history.append({"role": "user", "content": user_input})
 
-    # Generate response from VillamBot
+    # Generate response from Vchat
     with st.spinner("Thinking..."):
         response = generate_response(user_input, history=st.session_state.chat_history)
 
