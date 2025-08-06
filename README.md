@@ -1,6 +1,6 @@
-# 🌿 VillamBot – AI Chatbot for Villam Hub
+# 🌿 Vchat – AI Chatbot for Villam Hub
 
-VillamBot is the AI-powered assistant built for **Villam Hub**, a platform focused on sustainable agriculture and tree planting.  
+Vchat is the AI-powered assistant built for **Villam Hub**, a platform focused on sustainable agriculture and tree planting.  
 
 This project uses **LangChain**, **Pinecone**, and **Gemini 2.0 Flash** to deliver relevant answers based only on Villam Hub’s verified data.
 
@@ -41,9 +41,9 @@ This repo contains the **backend logic** and **testing environment** for VillamB
 | `.env.example`              | API keys template                     |
 | `requirements.txt`         | Lists all Python libraries needed to run the chatbot |
 | `villam_hub_knowledge_base.md`| Cleaned demo dataset containing Villam Hub knowledge |
-| `villambot_pipeline.ipynb`       | Main chatbot logic for exploration and debugging:<br> embeds queries, retrieves data, and generates responses |
-| `villambot.py`             | Main chatbot logic for integration |
-| `villambot_pinecone.ipynb` | Notebook to load and upsert the dataset into Pinecone |
+| `vchat_pipeline.ipynb`       | Main chatbot logic for exploration and debugging:<br> embeds queries, retrieves data, and generates responses |
+| `vchat.py`             | Main chatbot logic for integration |
+| `vchat_pinecone.ipynb` | Notebook to load and upsert the dataset into Pinecone |
 | `test_chatbot.py`| Notebook to test chatbot responses interactively |
 
 ##  Setup Instructions
@@ -74,13 +74,13 @@ pip install -r requirements.txt
 ## How to use 
 The project has two main Python scripts:
 
-*  `villambot_pinecone.ipynb`: This script processes the dataset `villam_hub_knowledge_base.md`, converts its content into embeddings/vectors (numerical representations), and stores(upsert) them in the Pinecone vector database. You only need to run this once (or whenever the dataset document changes).
+*  `vchat_pinecone.ipynb`: This script processes the dataset `villam_hub_knowledge_base.md`, converts its content into embeddings/vectors (numerical representations), and stores(upsert) them in the Pinecone vector database. You only need to run this once (or whenever the dataset document changes).
   
-*  `villambot_pipeline.ipynb` or `villambot.py`: These runs the chatbot engine logic (retrieval + Gemini 2.0 generation).
+*  `vchat_pipeline.ipynb` or `vchat.py`: These runs the chatbot engine logic (retrieval + Gemini 2.0 generation).
   
 ### Step 1: Upsert the Dataset to pinecone
 
-Run `villambot_pinecone.ipynb` to upload the contents of `villam_hub_knowledge_base.md` to Pinecone.
+Run `vchat_pinecone.ipynb` to upload the contents of `villam_hub_knowledge_base.md` to Pinecone.
 
 ### Step 2: Test the Chatbot
 
@@ -91,13 +91,13 @@ Use either:
 streamlit run test_chatbot.py
 ```
   
-* Or `villambot_pipeline.ipynb` to debug the full flow end-to-end
+* Or `vchat_pipeline.ipynb` to debug the full flow end-to-end
 
 
 ##  Backend Integration
 
 For developers:
-* All chatbot logic lives in `generate_response()` inside `villambot.py`
+* All chatbot logic lives in `generate_response()` inside `vchat.py`
 
 This is ready to be integrated with a **Flask**, **FastAPI**, or **Streamlit** frontend.
 
