@@ -54,7 +54,8 @@ git clone https://github.com/olamide-analyst/Villam-chatbot villambot
 cd villambot
 
 ```
- ### 2. Add Your Environment Variables (.env file)
+
+### 2. Add Your Environment Variables (.env file)
 
 Add API keys to `.env.example` file and rename to `.env` :
 
@@ -65,12 +66,38 @@ PINECONE_API_KEY=pinecone_key
 
  `.env` is already excluded from version control via `.gitignore`.
 
-### 3. Install Required Libraries
-Install all the Python packages listed in  `requirements.txt`
+### 3. Create and Activate a Virtual Environment (recommended)
+
+macOS/Linux (zsh/bash):
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip
+```
+
+Windows (PowerShell):
+```powershell
+py -m venv .venv
+.venv\Scripts\Activate.ps1
+python -m pip install --upgrade pip
+```
+
+Note:
+- Your prompt should show `(.venv)` when activated.
+- Run `deactivate` to exit the environment.
+
+### 4. Install Required Libraries
+Install all the Python packages listed in `requirements.txt` inside the activated virtual environment:
 
 ```bash
 pip install -r requirements.txt
 ```
+
+If you plan to use the notebooks in this repo with this environment, add the kernel to Jupyter:
+```bash
+python -m ipykernel install --user --name villam-chatbot-venv --display-name "Python (.venv)"
+```
+
 ## How to use 
 The project has two main Python scripts:
 
@@ -78,6 +105,8 @@ The project has two main Python scripts:
   
 *  `vchat_pipeline.ipynb` or `vchat.py`: These runs the chatbot engine logic (retrieval + Gemini 2.0 generation).
   
+Before running examples below, make sure your virtual environment is active (`source .venv/bin/activate`).
+
 ### Step 1: Upsert the Dataset to pinecone
 
 Run `vchat_pinecone.ipynb` to upload the contents of `villam_hub_knowledge_base.md` to Pinecone.
