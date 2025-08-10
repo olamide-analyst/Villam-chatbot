@@ -50,7 +50,7 @@ This repo contains the **backend logic** and **testing environment** for VillamB
 
 ### 1. Clone the Repo
 ```bash
-git clone https://github.com/olamide-analyst/Villam-chatbot
+git clone https://github.com/olamide-analyst/Villam-chatbot villambot
 cd villambot
 
 ```
