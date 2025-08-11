@@ -8,7 +8,7 @@ if "chat_history" not in st.session_state:
     ]
 
 # Title and instructions
-st.title("🌿 VChat – Villam Hub Assistant")
+st.title("🌿 V-Chat – Villam Hub Assistant")
 st.write("Ask about urban farming, tree planting, or anything Villam Hub-related!")
 
 # Display chat history
