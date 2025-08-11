@@ -4,7 +4,7 @@ from vchat import generate_response
 # --- Initialize session state ---
 if "chat_history" not in st.session_state:
     st.session_state.chat_history = [
-        {"role": "assistant", "content": "Hi there! I'm Vchat. How can I help you today?"}
+        {"role": "assistant", "content": "Hi there! I'm V-Chat. How can I help you today?"}
     ]
 
 # Title and instructions
