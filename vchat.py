@@ -83,9 +83,9 @@ def generate_response(user_question, history=[]):
     # Define the full chat prompt
     prompt = ChatPromptTemplate(
         messages=[
-            SystemMessagePromptTemplate.from_template(system_prompt),   # gives VillamBot its role + retrieved info
-            MessagesPlaceholder(variable_name="chat_history"),          # allows past chat to be included
-            HumanMessagePromptTemplate.from_template("{question}")      # inserts user's current question
+            SystemMessagePromptTemplate.from_template(system_prompt),   
+            MessagesPlaceholder(variable_name="chat_history"),          
+            HumanMessagePromptTemplate.from_template("{question}")      
         ]
     )
     # Load the Gemini 2.0 Flash model
